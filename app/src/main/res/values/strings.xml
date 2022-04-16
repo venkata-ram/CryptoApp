@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Crypto App</string>
+    <string name="btc_inr">BTC / INR</string>
+</resources>
