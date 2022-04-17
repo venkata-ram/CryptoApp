@@ -19,12 +19,12 @@ class MainActivityViewModel : ViewModel(), AutoRefresh {
     override fun refresh(delay: Long): Flow<Response<CryptoCurrency>> {
         return channelFlow {
             while (true) {
-                delay(delay)
                 try {
                     send(cryptoAPI.getCurrencies())
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
+                delay(delay)
             }
         }.flowOn(Dispatchers.IO)
     }

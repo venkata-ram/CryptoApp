@@ -10,6 +10,9 @@ import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.venkat.cryptoapp.R
 import com.venkat.cryptoapp.model.CryptoCurrencyItem
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CurrencyRecyclerviewAdapter(private val clickListener: (CryptoCurrencyItem) -> Unit) :
     RecyclerView.Adapter<CurrencyViewHolder>() {
@@ -49,9 +52,15 @@ class CurrencyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val currencyName = "${currency.baseAsset.uppercase()} / ${currency.quoteAsset.uppercase()}"
         currencyNameTextView.text = currencyName
 
-        val currencyPrice = "&#8377;${currency.lastPrice}"
-        val currencyPriceWithSymbol = HtmlCompat.fromHtml(currencyPrice, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        currencyPriceTextView.text = currencyPriceWithSymbol
+        val numberFormat = NumberFormat.getCurrencyInstance(Locale("en","in"))
+        if(currency.quoteAsset == "inr") {
+            val currencyPrice = numberFormat.format(currency.lastPrice.toDouble())
+            currencyPriceTextView.text = currencyPrice
+        }
+        else {
+            val currencyPrice = currency.lastPrice
+            currencyPriceTextView.text = currencyPrice
+        }
 
         val changedAmount = currency.lastPrice.toDouble().minus(currency.openPrice.toDouble())
         val changedPercentage = (changedAmount * 100) / currency.openPrice.toDouble()
