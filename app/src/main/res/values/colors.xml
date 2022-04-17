@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="card_color">#01579B</color>
+    <color name="app_color">#233446</color>
+    <color name="status_bar_color">#203040</color>
+
 </resources>
