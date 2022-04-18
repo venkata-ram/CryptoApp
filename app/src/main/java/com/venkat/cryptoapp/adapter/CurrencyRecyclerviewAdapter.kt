@@ -76,6 +76,9 @@ class CurrencyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val changePercentageStringWithSymbol = HtmlCompat.fromHtml(changePercentageString, HtmlCompat.FROM_HTML_MODE_LEGACY)
         changePercentageTextView.text = changePercentageStringWithSymbol
 
-        clickListener(currency)
+        view.setOnClickListener {
+            clickListener(currency)
+        }
+
     }
 }

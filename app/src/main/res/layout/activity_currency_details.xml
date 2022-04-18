@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/app_color"
+    app:cardElevation="8dp"
+    tools:context=".CurrencyDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/status_bar_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/symbol_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="BTC / INR"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/price_difference_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.25%"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:padding="8sp"
+                android:background="@android:color/holo_red_light"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="current price "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/current_price_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Rs.30,20,200.23"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/status_bar_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Volume "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/volume_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="893.8923"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="open price "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/open_price_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Rs. 30,20,200.23"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/status_bar_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="low price "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/low_price_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Rs. 30,20,200.23"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="high price "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/high_price_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Rs. 30,20,200.23"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/status_bar_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="bid price "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bid_price_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Rs. 30,20,200.23"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="ask price "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ask_price_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="Rs. 30,20,200.23"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/status_bar_color"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="At "
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/at_time_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="02:45 pm"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

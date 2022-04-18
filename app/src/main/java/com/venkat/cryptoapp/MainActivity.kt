@@ -1,6 +1,7 @@
 package com.venkat.cryptoapp
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -11,6 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.venkat.cryptoapp.adapter.CurrencyRecyclerviewAdapter
 import com.venkat.cryptoapp.data.CryptoAPI
 import com.venkat.cryptoapp.data.RetrofitInstance
@@ -27,12 +29,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter : CurrencyRecyclerviewAdapter
 
+
     private lateinit var viewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         initRecyclerView()
+        val swipeToRefreshLayout : SwipeRefreshLayout = findViewById( R.id.swipe_refresh_layout)
+        swipeToRefreshLayout.setOnRefreshListener {
+            swipeToRefreshLayout.isRefreshing = false
+            if(isOnline(this))
+                displayCurrenciesList()
+        }
     }
 
     private fun initRecyclerView() {
@@ -63,7 +72,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun currencyItemClicked(currency : CryptoCurrencyItem){
-        Log.i("MyTag",currency.symbol)
+        val intent = Intent(this,CurrencyDetailsActivity::class.java)
+        intent.putExtra("currency_symbol",currency.symbol)
+        startActivity(intent)
     }
 
     // checking network connectivity

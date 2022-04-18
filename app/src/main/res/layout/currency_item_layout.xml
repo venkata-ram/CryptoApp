@@ -15,7 +15,7 @@
             android:textStyle="bold"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:padding="16dp"
             android:textColor="@color/white"/>
         <TextView
@@ -26,7 +26,9 @@
             android:textStyle="bold"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:textSize="18sp"
+            android:layout_toEndOf="@id/currency_name_text_view"
+            android:gravity="end"
+            android:textSize="16sp"
             android:layout_toStartOf="@id/price_difference_text_view"
             android:padding="16dp"
             android:textColor="@color/white"/>
@@ -43,7 +45,7 @@
             android:padding="8dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
