@@ -7,6 +7,9 @@ import android.net.NetworkCapabilities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,14 +22,16 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter : CurrencyRecyclerviewAdapter
-
+    private lateinit var progressBar: ProgressBar
 
     private lateinit var viewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         lifecycle.addObserver(viewModel)
+        setContentView(R.layout.activity_main)
+        progressBar = findViewById(R.id.progress_bar)
         initRecyclerView()
         val swipeToRefreshLayout : SwipeRefreshLayout = findViewById( R.id.swipe_refresh_layout)
         swipeToRefreshLayout.setOnRefreshListener {
@@ -61,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 responses?.let {
                     withContext(Dispatchers.Main){
                         adapter.setList(it)
+                        progressBar.visibility = View.GONE
                     }
                 }
             }

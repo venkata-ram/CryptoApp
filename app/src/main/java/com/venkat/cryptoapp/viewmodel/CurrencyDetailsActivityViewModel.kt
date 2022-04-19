@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
+import java.text.Format
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,7 +23,7 @@ class CurrencyDetailsActivityViewModel(private val symbol: String) : ViewModel()
     AutoRefresh<CryptoCurrencyItem>, DefaultLifecycleObserver {
     private val cryptoAPI: CryptoAPI = RetrofitInstance.getInstance().create(CryptoAPI::class.java)
 
-    var flag = MutableLiveData<Boolean>()
+    private var flag = MutableLiveData<Boolean>()
 
    init {
         flag.value = true
@@ -56,5 +58,22 @@ class CurrencyDetailsActivityViewModel(private val symbol: String) : ViewModel()
 
         calendar.timeInMillis = millis
         return formatter.format(calendar.time)
+    }
+
+    fun formatCurrency(currency:String,quoteAsset:String):String{
+        var currencyPrice = ""
+        val numberFormat = NumberFormat.getCurrencyInstance(Locale("en","in"))
+        if(quoteAsset == "inr") {
+            currencyPrice = numberFormat.format(currency.toDouble())
+        }
+        else {
+            currencyPrice = currency
+        }
+        return currencyPrice
+    }
+
+    fun formatNumber(number:String) : String{
+        val format: Format = NumberFormat.getNumberInstance(Locale("en", "in"))
+        return format.format(number.toDouble())
     }
 }

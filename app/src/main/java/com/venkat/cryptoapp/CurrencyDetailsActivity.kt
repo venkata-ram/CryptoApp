@@ -1,8 +1,8 @@
 package com.venkat.cryptoapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModelProvider
 import com.venkat.cryptoapp.databinding.ActivityCurrencyDetailsBinding
 import com.venkat.cryptoapp.viewmodel.CurrencyDetailsActivityViewModel
@@ -39,27 +39,53 @@ class CurrencyDetailsActivity : AppCompatActivity() {
     private fun setDataToViews() {
         val data = viewModel.refresh(1000)
         CoroutineScope(Dispatchers.IO).launch {
-            data.collect{ response ->
+            data.collect { response ->
                 val responses = response.body()
                 responses?.let { currency ->
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         val symbolString = "${currency.baseAsset} / ${currency.quoteAsset}"
                         binding.symbolTextView.text = symbolString
-                        binding.currentPriceTextView.text = currency.lastPrice
-                        binding.volumeTextView.text = currency.volume
-                        binding.openPriceTextView.text = currency.openPrice
-                        binding.lowPriceTextView.text = currency.lowPrice
-                        binding.highPriceTextView.text = currency.highPrice
-                        binding.bidPriceTextView.text = currency.bidPrice
-                        binding.askPriceTextView.text = currency.askPrice
+                        binding.currentPriceTextView.text =
+                            viewModel.formatCurrency(currency.lastPrice, currency.quoteAsset)
+                        binding.volumeTextView.text = viewModel.formatNumber(currency.volume)
+                        binding.openPriceTextView.text =
+                            viewModel.formatCurrency(currency.openPrice, currency.quoteAsset)
+                        binding.lowPriceTextView.text =
+                            viewModel.formatCurrency(currency.lowPrice, currency.quoteAsset)
+                        binding.highPriceTextView.text =
+                            viewModel.formatCurrency(currency.highPrice, currency.quoteAsset)
+                        binding.bidPriceTextView.text =
+                            viewModel.formatCurrency(currency.bidPrice, currency.quoteAsset)
+                        binding.askPriceTextView.text =
+                            viewModel.formatCurrency(currency.askPrice, currency.quoteAsset)
                         binding.atTimeTextView.text = viewModel.getDateFromMilliseconds(currency.at)
+
+                        val changedAmount =
+                            currency.lastPrice.toDouble().minus(currency.openPrice.toDouble())
+                        val changedPercentage =
+                            (changedAmount * 100) / currency.openPrice.toDouble()
+                        var changePercentageString = ""
+                        if (changedPercentage >= 0) {
+                            binding.priceDifferenceTextView.setBackgroundResource(android.R.color.holo_green_dark)
+                            changePercentageString =
+                                "&#9652; ${String.format("%.2f", changedPercentage)}%"
+                        } else {
+                            binding.priceDifferenceTextView.setBackgroundResource(android.R.color.holo_red_light)
+                            changePercentageString =
+                                "&#9662; ${String.format("%.2f", changedPercentage * -1)}%"
+                        }
+
+                        val changePercentageStringWithSymbol = HtmlCompat.fromHtml(
+                            changePercentageString,
+                            HtmlCompat.FROM_HTML_MODE_LEGACY
+                        )
+                        binding.priceDifferenceTextView.text = changePercentageStringWithSymbol
 
                     }
                 }
             }
         }
     }
-
 
 
     override fun onPause() {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/app_color</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_baseline_currency_bitcoin_24</item>
+        <item name="splashScreenIconSize">10dp</item>
+        <item name="postSplashScreenTheme">@style/Theme.CryptoApp</item>
+
+    </style>
+</resources>
