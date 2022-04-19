@@ -6,6 +6,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
-interface AutoRefresh {
-    fun refresh(delay:Long) : Flow<Response<CryptoCurrency>>
+interface AutoRefresh<T> {
+    fun refresh(delay:Long) : Flow<Response<T>>
 }

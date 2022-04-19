@@ -4,26 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.venkat.cryptoapp.adapter.CurrencyRecyclerviewAdapter
-import com.venkat.cryptoapp.data.CryptoAPI
-import com.venkat.cryptoapp.data.RetrofitInstance
-import com.venkat.cryptoapp.model.CryptoCurrency
 import com.venkat.cryptoapp.model.CryptoCurrencyItem
-import com.venkat.cryptoapp.util.AutoRefresh
+import com.venkat.cryptoapp.viewmodel.MainActivityViewModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.channelFlow
-import retrofit2.Response
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -35,12 +26,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        lifecycle.addObserver(viewModel)
         initRecyclerView()
         val swipeToRefreshLayout : SwipeRefreshLayout = findViewById( R.id.swipe_refresh_layout)
         swipeToRefreshLayout.setOnRefreshListener {
             swipeToRefreshLayout.isRefreshing = false
             if(isOnline(this))
                 displayCurrenciesList()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(isOnline(this)){
+            displayCurrenciesList()
         }
     }
 
@@ -51,9 +50,6 @@ class MainActivity : AppCompatActivity() {
             currencyItemClicked(currency)
         }
         recyclerView.adapter = adapter
-        if(isOnline(this)){
-            displayCurrenciesList()
-        }
 
     }
 
@@ -97,6 +93,16 @@ class MainActivity : AppCompatActivity() {
         }
         return false
     }
+
+    /*override fun onResume() {
+        super.onResume()
+        viewModel.flag.value = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.flag.value = false
+    }*/
 
 
 
